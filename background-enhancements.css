@@ -1,0 +1,380 @@
+/* Additional Background Enhancements - Educational Theme */
+
+/* Ensure all sections are positioned relative and overflow hidden */
+.hero,
+.section,
+.section-alt,
+.journey-section,
+.vision-section,
+.models-comparison,
+.financial-tables,
+#opportunity,
+#returns,
+#why-now,
+#financials,
+.cta-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Modern Building/Architecture Pattern for Hero with Real Image */
+.hero {
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.95) 0%, rgba(0, 163, 255, 0.95) 50%, rgba(0, 212, 170, 0.95) 100%);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(135deg, rgba(0, 102, 255, 0.85) 0%, rgba(0, 163, 255, 0.85) 50%, rgba(0, 212, 170, 0.85) 100%),
+        url('images/bg-hero-new.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    z-index: 0;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, rgba(0, 102, 255, 0.3), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Remove pattern - keep clean */
+.feature-grid {
+    position: relative;
+}
+
+/* School Building Silhouette Effect with Real Image */
+.vision-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)),
+        url('images/bg-vision.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.vision-section .two-column {
+    position: relative;
+    z-index: 1;
+}
+
+/* Campus Layout Grid Pattern with Real Image */
+.models-comparison {
+    position: relative;
+}
+
+.models-comparison::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)),
+        url('images/bg-models.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.model-card {
+    position: relative;
+    z-index: 1;
+}
+
+/* Remove pattern - keep clean */
+.returns-grid {
+    position: relative;
+}
+
+/* Growth Chart Pattern with Real Image */
+.financial-tables {
+    position: relative;
+    background: white;
+}
+
+.financial-tables::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.93)),
+        url('images/bg-finance.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.financial-tables > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Investment Journey Road/Path Effect */
+.timeline {
+    position: relative;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: 
+        repeating-linear-gradient(
+            to bottom,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.3) 20px,
+            rgba(255, 255, 255, 0.3) 40px
+        );
+    z-index: 1;
+}
+
+/* Remove pattern - keep clean */
+.why-now-section {
+    position: relative;
+}
+
+/* Remove decorative pattern */
+.image-placeholder {
+    position: relative;
+}
+
+/* Remove pattern - keep clean */
+.stat-card {
+    position: relative;
+}
+
+/* Make sections stack properly with z-index */
+.section, .section-alt {
+    z-index: 1;
+}
+
+.feature-grid,
+.returns-grid,
+.models-comparison {
+    position: relative;
+}
+
+/* Opportunity Section with Campus Image */
+#opportunity::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)),
+        url('images/bg-campus.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#opportunity .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Journey Section Enhanced */
+.journey-section {
+    position: relative;
+}
+
+.journey-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.98)),
+        url('images/bg-campus.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.timeline {
+    position: relative;
+    z-index: 1;
+}
+
+/* Image placeholder with partial reveal */
+.image-placeholder {
+    background-image: 
+        linear-gradient(135deg, rgba(0, 102, 255, 0.85) 0%, rgba(0, 212, 170, 0.85) 100%),
+        url('images/bg-vision.jpg');
+    background-size: auto, cover;
+    background-position: center, center;
+    background-repeat: no-repeat;
+}
+
+.image-placeholder .placeholder-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 102, 255, 0.2);
+    backdrop-filter: blur(5px);
+    padding: 40px;
+    border-radius: 16px;
+}
+
+/* Returns Section with Background */
+#returns::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)),
+        url('images/bg-finance.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#returns {
+    position: relative;
+}
+
+#returns .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* CTA Section with Background */
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(135deg, rgba(0, 102, 255, 0.88) 0%, rgba(0, 163, 255, 0.88) 50%, rgba(0, 212, 170, 0.88) 100%),
+        url('images/bg-hero-new.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cta-section {
+    position: relative;
+}
+
+.cta-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Why Now Section with Background */
+#why-now::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.91), rgba(255, 255, 255, 0.91)),
+        url('images/bg-vision.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#why-now {
+    position: relative;
+}
+
+#why-now .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Financials Section Enhanced */
+#financials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(247, 250, 252, 0.92), rgba(247, 250, 252, 0.92)),
+        url('images/bg-models.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#financials {
+    position: relative;
+}
+
+#financials .container {
+    position: relative;
+    z-index: 1;
+}

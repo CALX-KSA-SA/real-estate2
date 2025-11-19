@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المجمع التعليمي - دراسة جدوى استثمارية | Educational Complex Investment Proposal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="background-enhancements.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Arabic Font Override */
+        body.rtl, body.rtl * {
+            font-family: 'Cairo', 'Inter', -apple-system, sans-serif;
+        }
+        
+        /* Dynamic Input Panel */
+        .input-panel {
+            position: fixed;
+            top: 80px;
+            right: -400px;
+            width: 380px;
+            height: calc(100vh - 100px);
+            background: white;
+            box-shadow: -2px 0 20px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            border-radius: 12px 0 0 12px;
+        }
+        
+        .input-panel.active {
+            right: 0;
+        }
+        
+        .panel-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,102,255,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .panel-toggle:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,102,255,0.4);
+        }
+        
+        .input-section {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .input-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0,102,255,0.1);
+        }
+        
+        .calc-output {
+            background: var(--bg-light);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .dynamic-value {
+            background: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        
+        .update-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--success-green);
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Language Toggle */
+        .ar { display: inline; }
+        .en { display: none; }
+        
+        body:not(.rtl) .ar { display: none; }
+        body:not(.rtl) .en { display: inline; }
+        
+        /* RTL Adjustments */
+        body.rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        body:not(.rtl) {
+            direction: ltr;
+            text-align: left;
+        }
+        
+        body.rtl .input-panel {
+            right: auto;
+            left: -400px;
+            border-radius: 0 12px 12px 0;
+        }
+        
+        body.rtl .input-panel.active {
+            right: auto;
+            left: 0;
+        }
+        
+        body.rtl .panel-toggle {
+            right: auto;
+            left: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .input-panel {
+                width: 100%;
+                right: -100%;
+                top: 0;
+                height: 100vh;
+                border-radius: 0;
+            }
+            
+            .input-panel.active {
+                right: 0;
+            }
+            
+            body.rtl .input-panel {
+                left: auto;
+                right: -100%;
+            }
+            
+            body.rtl .input-panel.active {
+                right: 0;
+            }
+            
+            .panel-toggle {
+                font-size: 14px;
+                padding: 10px 16px;
+                top: 10px;
+                right: 10px;
+                position: fixed;
+                z-index: 1001;
+            }
+            
+            .input-section {
+                padding: 15px;
+            }
+            
+            .input-section h3 {
+                font-size: 15px !important;
+                position: sticky;
+                top: 0;
+                background: white;
+                padding: 10px 0;
+                z-index: 10;
+                border-bottom: 2px solid var(--primary-color);
+            }
+            
+            .input-group {
+                margin-bottom: 12px;
+            }
+            
+            .input-group label {
+                font-size: 13px !important;
+            }
+            
+            .input-group input {
+                font-size: 16px !important;
+                padding: 12px !important;
+                -webkit-appearance: none;
+                appearance: none;
+                border-radius: 8px;
+            }
+            
+            .calc-output {
+                font-size: 13px !important;
+                padding: 10px !important;
+            }
+            
+            .hero-title {
+                font-size: 28px !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px !important;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+            }
+            
+            .stat-number {
+                font-size: 32px !important;
+            }
+            
+            .feature-grid,
+            .financial-highlight-grid,
+            .projection-cards {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .timeline-item {
+                padding-left: 0 !important;
+            }
+            
+            .btn-large {
+                padding: 12px 24px !important;
+                font-size: 16px !important;
+            }
+            
+            .navbar {
+                padding: 10px 0 !important;
+            }
+            
+            .nav-links {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+            
+            /* Close panel overlay for mobile */
+            .input-panel.active::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.5);
+                z-index: -1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 24px !important;
+            }
+            
+            .stat-number {
+                font-size: 28px !important;
+            }
+            
+            .section-title {
+                font-size: 24px !important;
+            }
+            
+            .input-section h3 {
+                font-size: 14px !important;
+            }
+            
+            .input-group input {
+                font-size: 16px !important;
+                padding: 12px !important;
+                border-width: 2px !important;
+            }
+            
+            .calc-output {
+                font-size: 12px !important;
+            }
+            
+            .panel-toggle {
+                font-size: 13px !important;
+                padding: 8px 14px !important;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+        }
+    </style>
+</head>
+<body class="rtl">
+    <!-- Dynamic Input Panel Toggle -->
+    <button class="panel-toggle" onclick="togglePanel()">
+        <span class="update-indicator"></span>
+        تعديل الأرقام
+    </button>
+
+    <!-- Dynamic Input Panel -->
+    <div class="input-panel" id="inputPanel">
+        <div class="input-section">
+            <h3>🏗️ بيانات الأرض والبناء</h3>
+            
+            <div class="input-group">
+                <label>مساحة الأرض (م²)</label>
+                <input type="number" id="landArea" value="14000" oninput="calculate()">
+                <div class="calc-output">المساحة: <span id="displayLandArea">14,000</span> م²</div>
+            </div>
+            
+            <div class="input-group">
+                <label>سعر متر الأرض (ريال)</label>
+                <input type="number" id="landPrice" value="4000" oninput="calculate()">
+                <div class="calc-output">السعر: <span id="displayLandPrice">4,000</span> ريال/م²</div>
+            </div>
+            
+            <div class="input-group">
+                <label>تكلفة الأرض (محسوبة تلقائياً)</label>
+                <div class="calc-output" style="background: #e3f2fd; color: #1976d2; font-size: 16px;">
+                    💰 <span id="landCostCalc">56,000,000</span> ريال
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>مسطحات البناء (م²)</label>
+                <input type="number" id="buildingArea" value="30000" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>تكلفة متر البناء (ريال)</label>
+                <input type="number" id="costPerMeter" value="2500" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>تكلفة البناء (محسوبة تلقائياً)</label>
+                <div class="calc-output" style="background: #e3f2fd; color: #1976d2; font-size: 16px;">
+                    🏗️ <span id="constructionCostCalc">75,000,000</span> ريال
+                </div>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <h3>💼 تكاليف الإنشاء الإضافية</h3>
+            
+            <div class="input-group">
+                <label>تجهيزات المختبرات والمعامل</label>
+                <input type="number" id="equipment" value="6000000" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>الأثاث والتجهيزات</label>
+                <input type="number" id="furniture" value="4800000" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>الأنظمة التقنية (LMS, SMS)</label>
+                <input type="number" id="technology" value="2000000" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>البنية التحتية (ملاعب، حدائق)</label>
+                <input type="number" id="infrastructure" value="5000000" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>إجمالي الاستثمار (محسوب تلقائياً)</label>
+                <div class="calc-output" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: 18px; font-weight: 800;">
+                    🎯 <span id="totalInvestmentCalc">148,800,000</span> ريال
+                </div>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <h3>👥 بيانات الطلاب والرسوم</h3>
+            
+            <div class="input-group">
+                <label>الطاقة الاستيعابية المدروسة</label>
+                <input type="number" id="maxCapacity" value="2800" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>الرسوم الدراسية السنوية (ريال)</label>
+                <input type="number" id="tuition" value="22500" oninput="calculate()">
+            </div>
+        </div>
+
+        <div class="input-section">
+            <h3>📊 أعداد الطلاب المتوقعة (5 سنوات)</h3>
+            
+            <div class="input-group">
+                <label>السنة الأولى</label>
+                <input type="number" id="students1" value="1800" oninput="calculate()">
+                <div class="calc-output">الإيرادات: <span id="rev1">40.50</span> مليون ريال</div>
+            </div>
+            
+            <div class="input-group">
+                <label>السنة الثانية</label>
+                <input type="number" id="students2" value="2300" oninput="calculate()">
+                <div class="calc-output">الإيرادات: <span id="rev2">51.75</span> مليون ريال</div>
+            </div>
+            
+            <div class="input-group">
+                <label>السنة الثالثة</label>
+                <input type="number" id="students3" value="2600" oninput="calculate()">
+                <div class="calc-output">الإيرادات: <span id="rev3">58.50</span> مليون ريال</div>
+            </div>
+            
+            <div class="input-group">
+                <label>السنة الرابعة</label>
+                <input type="number" id="students4" value="2800" oninput="calculate()">
+                <div class="calc-output">الإيرادات: <span id="rev4">63.00</span> مليون ريال</div>
+            </div>
+            
+            <div class="input-group">
+                <label>السنة الخامسة</label>
+                <input type="number" id="students5" value="2800" oninput="calculate()">
+                <div class="calc-output">الإيرادات: <span id="rev5">63.00</span> مليون ريال</div>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <h3>💸 المصروفات التشغيلية السنوية</h3>
+            
+            <div class="input-group">
+                <label>مصروفات السنة الأولى</label>
+                <input type="number" id="expenses1" value="35000000" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>مصروفات السنة الثانية</label>
+                <input type="number" id="expenses2" value="40000000" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>مصروفات السنة الثالثة</label>
+                <input type="number" id="expenses3" value="42000000" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>مصروفات السنة الرابعة</label>
+                <input type="number" id="expenses4" value="45000000" oninput="calculate()">
+            </div>
+            
+            <div class="input-group">
+                <label>مصروفات السنة الخامسة</label>
+                <input type="number" id="expenses5" value="47000000" oninput="calculate()">
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2><span class="ar">المجمع التعليمي</span><span class="en hidden">Educational Complex</span></h2>
+                <span class="brand-tagline"><span class="ar">مشروع تعليمي متكامل عالي الجودة</span><span class="en hidden">Integrated High-Quality Educational Project</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#journey"><span class="ar">رحلة الاستثمار</span><span class="en hidden">Investment Journey</span></a>
+                <a href="#opportunity"><span class="ar">الفرصة</span><span class="en hidden">Opportunity</span></a>
+                <a href="#financials"><span class="ar">البيانات المالية</span><span class="en hidden">Financials</span></a>
+                <a href="#contact" class="btn-primary"><span class="ar">حجز موعد</span><span class="en hidden">Schedule Meeting</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge"><span class="ar">🌟 استثمار تعليمي بعائد مرتفع</span><span class="en hidden">🌟 High-Return Educational Investment</span></span>
+                <h1 class="hero-title"><span class="ar">المجمع التعليمي المتميز</span><span class="en hidden">Premium Educational Complex</span></h1>
+                <p class="hero-subtitle"><span class="ar">استفد من الطلب المتزايد على التعليم النوعي في الرياض. نموذج تشغيلي مثبت يحقق عائداً داخلياً مرتفعاً وهوامش ربح إجمالية متميزة.</span><span class="en hidden">Capitalize on growing demand for quality education in Riyadh. Proven operational model with high internal returns and exceptional gross margins.</span></p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary btn-large"><span class="ar">📅 احجز اجتماع المستثمرين</span><span class="en hidden">📅 Schedule Investor Meeting</span></a>
+                    <a href="#journey" class="btn-secondary btn-large"><span class="ar">📈 شاهد رحلة الاستثمار</span><span class="en hidden">📈 View Investment Journey</span></a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number dynamic-value"><span id="heroROI">45.5</span>%</div>
+                        <div class="stat-label"><span class="ar">العائد على الاستثمار (5 سنوات)</span><span class="en hidden">ROI (5 Years)</span></div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number dynamic-value">$<span id="heroEBITDA">18.1</span>M</div>
+                        <div class="stat-label"><span class="ar">إمكانات الأرباح التشغيلية (5 سنوات)</span><span class="en hidden">EBITDA Potential (5 Years)</span></div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number dynamic-value"><span id="heroMargin">60</span>%+</div>
+                        <div class="stat-label"><span class="ar">هوامش ربح إجمالية</span><span class="en hidden">Gross Margins</span></div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><span class="ar">السنة</span><span class="en hidden">Year</span> <span id="heroBreakeven">3-4</span></div>
+                        <div class="stat-label"><span class="ar">نقطة التعادل المالي</span><span class="en hidden">Break-Even</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Journey Timeline -->
+    <section id="journey" class="section journey-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">رحلتك الاستثمارية</span>
+                <h2 class="section-title">من الاستثمار إلى تحقيق الأرباح</h2>
+                <p class="section-subtitle">اتبع المسار الواضح من ضخ رأس المال إلى العائد المستدام</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <h3>💰 مرحلة الاستثمار</h3>
+                        <p class="timeline-description">ضخ رأس المال في فرصة تعليمية مثبتة</p>
+                        <ul class="timeline-details">
+                            <li><strong>الاستثمار الأولي:</strong> <span class="dynamic-value"><span id="timeline1Investment">148.8</span> مليون ريال</span></li>
+                            <li><strong>تكلفة الأرض:</strong> <span id="timeline1Land">56.0</span> مليون ريال</li>
+                            <li><strong>ما يحدث:</strong> التراخيص، الامتثال، اقتناء الأراضي، وإعداد المرافق</li>
+                            <li><strong>القيمة الفورية:</strong> تراخيص مضمونة، أصول مقتناة، علامة تجارية راسخة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h3>🏗️ مرحلة البناء والإعداد</h3>
+                        <p class="timeline-description">رأس المال يتحول إلى بنية تحتية تعليمية ملموسة</p>
+                        <ul class="timeline-details">
+                            <li><strong>البناء:</strong> مرافق تعليمية عالمية المستوى (<span id="timeline2Building">30,000</span> م²)</li>
+                            <li><strong>تكوين الفريق:</strong> توظيف المعلمين والإداريين الخبراء</li>
+                            <li><strong>إطلاق التسويق:</strong> حملات ما قبل التسجيل تستهدف العائلات الميسورة</li>
+                            <li><strong>عوائدك:</strong> تقدير الأصول، ارتفاع قيمة العلامة التجارية، التزامات التسجيل</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h3>📚 مرحلة الإطلاق والنمو (السنة 1-2)</h3>
+                        <p class="timeline-description">بدء توليد الإيرادات مع تسجيل الطلاب</p>
+                        <ul class="timeline-details">
+                            <li><strong>تسجيل السنة الأولى:</strong> <span id="timeline3Students1">1,800</span> طالب يولدون <span class="dynamic-value"><span id="timeline3Rev1">40.5</span> مليون ريال</span></li>
+                            <li><strong>تسجيل السنة الثانية:</strong> <span id="timeline3Students2">2,300</span> طالب يولدون <span class="dynamic-value"><span id="timeline3Rev2">51.75</span> مليون ريال</span></li>
+                            <li><strong>التدفق النقدي:</strong> نمو قوي في الإيرادات مع التحسين التشغيلي</li>
+                            <li><strong>عوائدك:</strong> زيادة قيمة الأصول، تحقق من صحة السوق</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <h3>📈 التعادل والربحية (السنة 3-4)</h3>
+                        <p class="timeline-description">استثمارك يصبح إيجابياً نقدياً وعالي الربحية</p>
+                        <ul class="timeline-details">
+                            <li><strong>نمو التسجيل:</strong> <span class="dynamic-value"><span id="timeline4Students">2,600-2,800</span> طالب</span> برسوم سنوية <span class="dynamic-value"><span id="timeline4Fee">22,500</span> ريال</span></li>
+                            <li><strong>تحقيق التعادل:</strong> السنة 3-4 حسب هيكل الرسوم</li>
+                            <li><strong>هوامش قوية:</strong> عمليات محسّنة توفر ربحية ثابتة</li>
+                            <li><strong>عوائدك:</strong> أرباح تشغيلية إيجابية، بدء توزيع الأرباح</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content">
+                        <h3>💎 الربحية الناضجة وخيارات الخروج (السنة 5+)</h3>
+                        <p class="timeline-description">أقصى عوائد واستراتيجيات خروج متعددة</p>
+                        <ul class="timeline-details">
+                            <li><strong>صافي الربح (5 سنوات):</strong> <span class="dynamic-value"><span id="timeline5Profit">67.75</span> مليون ريال</span></li>
+                            <li><strong>إجمالي العوائد:</strong> عائد <span class="dynamic-value"><span id="timeline5ROI">45.5</span>%</span> على مدى 5 سنوات</li>
+                            <li><strong>خيارات الخروج:</strong> بيع استراتيجي، استحواذ الأسهم الخاصة، طرح عام، أو استمرار الملكية</li>
+                            <li><strong>عوائدك:</strong> مضاعفات من الاستثمار الأصلي + أرباح مستمرة</li>
+                        </ul>
+                        <div class="success-box">
+                            <p><strong>🎯 معلم النجاح:</strong> استثمارك الأولي حقق عوائد استثنائية، وأصبحت شريكاً في مؤسسة تعليمية رائدة تحقق نمواً مستداماً وربحية متصاعدة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="opportunity" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">فرصة السوق</span>
+                <h2 class="section-title">فرصة استثمارية واعدة في سوق التعليم النوعي بالرياض</h2>
+                <p class="section-subtitle">مجمع تعليمي متكامل يملأ فجوة حرجة في المشهد التعليمي السعودي بمعايير عالمية</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card highlight-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>الوضع في السوق</h3>
+                    <p><strong>طلب متزايد على التعليم النوعي عالي الجودة في الرياض.</strong> فرصة استثمارية واعدة في قطاع التعليم الخاص بمعايير دولية معتمدة.</p>
+                </div>
+                <div class="feature-card highlight-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>تسعير محسّن</h3>
+                    <p><strong>نموذج تسعير تنافسي</strong> يستهدف العائلات السعودية الطموحة الباحثة عن تعليم نوعي بقيمة استثنائية.</p>
+                </div>
+                <div class="feature-card highlight-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>اقتصاديات متفوقة</h3>
+                    <p><strong>هوامش ربح إجمالية <span class="dynamic-value"><span id="featuresMargin">60</span>%+</span></strong> مع كفاءات تشغيلية مثبتة.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>مناهج دولية معتمدة</h3>
+                    <p>تعليم نوعي متكامل بمعايير دولية معتمدة يجمع بين الأصالة والحداثة والتميز الأكاديمي.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏙️</div>
+                    <h3>موقع متميز</h3>
+                    <p>موقع استراتيجي في مناطق راقية ذات نمو مرتفع ومتوافقة مع رؤية المملكة 2030، مما يضمن طلباً مستداماً على الخدمات التعليمية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>معايير دولية</h3>
+                    <p>برامج تعليمية معتمدة مع هيئة تدريس مؤهلة لإعداد الطلاب للمستقبل بطاقة استيعابية مدروسة تضمن جودة التعليم وتحقيق العوائد المستهدفة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Summary Section -->
+    <section id="financials" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">الملخص المالي التفصيلي</span>
+                <h2 class="section-title">نظرة مالية شاملة</h2>
+                <p class="section-subtitle">توقعات شفافة وهيكل استثماري واضح • جميع الأرقام محسوبة تلقائياً</p>
+            </div>
+            
+            <div class="financial-overview">
+                <div class="financial-highlight-grid">
+                    <div class="fin-highlight-card">
+                        <div class="fin-icon">💰</div>
+                        <div class="fin-number dynamic-value"><span id="finInvestment">148.8</span>M</div>
+                        <div class="fin-label">إجمالي الاستثمار</div>
+                        <p>الأرض + البناء + التجهيزات</p>
+                    </div>
+                    <div class="fin-highlight-card">
+                        <div class="fin-icon">📈</div>
+                        <div class="fin-number dynamic-value"><span id="finROI">45.5</span>%</div>
+                        <div class="fin-label">العائد على الاستثمار</div>
+                        <p>عائد 5 سنوات على الاستثمار</p>
+                    </div>
+                    <div class="fin-highlight-card">
+                        <div class="fin-icon">💎</div>
+                        <div class="fin-number dynamic-value"><span id="finMargin">60</span>%+</div>
+                        <div class="fin-label">هوامش الربح الإجمالية</div>
+                        <p>بحلول السنة الرابعة مع عمليات محسّنة</p>
+                    </div>
+                    <div class="fin-highlight-card">
+                        <div class="fin-icon">🎯</div>
+                        <div class="fin-number">السنة <span id="finBreakeven">3-4</span></div>
+                        <div class="fin-label">نقطة التعادل</div>
+                        <p>حسب اختيار فئة الرسوم</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue & Profit Projection Table -->
+            <div class="financial-tables">
+                <h3>📊 توقعات الإيرادات والأرباح (5 سنوات)</h3>
+                <div class="projection-cards">
+                    <div class="proj-card">
+                        <div class="proj-year">السنة 1</div>
+                        <div class="proj-students"><span id="projStudents1">1,800</span> طالب</div>
+                        <div class="proj-revenue"><span class="dynamic-value"><span id="projRev1">40.5</span>M ريال</span></div>
+                        <div class="proj-expenses"><span id="projExp1">35.0</span>M مصروفات</div>
+                        <div class="proj-profit" style="color: #10b981; font-weight: 700;"><span id="projProfit1">5.5</span>M ربح</div>
+                        <div class="proj-status status-growth">مرحلة النمو</div>
+                    </div>
+                    <div class="proj-card">
+                        <div class="proj-year">السنة 2</div>
+                        <div class="proj-students"><span id="projStudents2">2,300</span> طالب</div>
+                        <div class="proj-revenue"><span class="dynamic-value"><span id="projRev2">51.75</span>M ريال</span></div>
+                        <div class="proj-expenses"><span id="projExp2">40.0</span>M مصروفات</div>
+                        <div class="proj-profit" style="color: #10b981; font-weight: 700;"><span id="projProfit2">11.75</span>M ربح</div>
+                        <div class="proj-status status-growth">مرحلة التوسع</div>
+                    </div>
+                    <div class="proj-card">
+                        <div class="proj-year">السنة 3</div>
+                        <div class="proj-students"><span id="projStudents3">2,600</span> طالب</div>
+                        <div class="proj-revenue"><span class="dynamic-value"><span id="projRev3">58.5</span>M ريال</span></div>
+                        <div class="proj-expenses"><span id="projExp3">42.0</span>M مصروفات</div>
+                        <div class="proj-profit" style="color: #10b981; font-weight: 700;"><span id="projProfit3">16.5</span>M ربح</div>
+                        <div class="proj-status status-approaching">اقتراب من التعادل</div>
+                    </div>
+                    <div class="proj-card proj-highlight">
+                        <div class="proj-year">السنة 4</div>
+                        <div class="proj-students"><span id="projStudents4">2,800</span> طالب</div>
+                        <div class="proj-revenue"><span class="dynamic-value"><span id="projRev4">63.0</span>M ريال</span></div>
+                        <div class="proj-expenses"><span id="projExp4">45.0</span>M مصروفات</div>
+                        <div class="proj-profit" style="color: #10b981; font-weight: 700;"><span id="projProfit4">18.0</span>M ربح</div>
+                        <div class="proj-status status-positive">التعادل ✓</div>
+                    </div>
+                    <div class="proj-card proj-highlight">
+                        <div class="proj-year">السنة 5</div>
+                        <div class="proj-students"><span id="projStudents5">2,800</span> طالب</div>
+                        <div class="proj-revenue"><span class="dynamic-value"><span id="projRev5">63.0</span>M ريال</span></div>
+                        <div class="proj-expenses"><span id="projExp5">47.0</span>M مصروفات</div>
+                        <div class="proj-profit" style="color: #10b981; font-weight: 700;"><span id="projProfit5">16.0</span>M ربح</div>
+                        <div class="proj-status status-profitable">ربحية كاملة</div>
+                    </div>
+                </div>
+
+                <div class="returns-summary" style="margin-top: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 16px; color: white;">
+                    <h3 style="color: white; margin-bottom: 20px;">💰 ملخص العوائد المالية (5 سنوات)</h3>
+                    <div class="recommendation-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+                        <div class="rec-point" style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: white;">📊 إجمالي الإيرادات</h4>
+                            <p style="font-size: 24px; font-weight: 800; color: #FFB020; margin: 10px 0;"><span id="totalRevenue">276.75</span>M ريال</p>
+                        </div>
+                        <div class="rec-point" style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: white;">💸 إجمالي المصروفات</h4>
+                            <p style="font-size: 24px; font-weight: 800; color: #FFB020; margin: 10px 0;"><span id="totalExpenses">209.0</span>M ريال</p>
+                        </div>
+                        <div class="rec-point" style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: white;">💎 صافي الربح</h4>
+                            <p style="font-size: 24px; font-weight: 800; color: #10B981; margin: 10px 0;"><span id="netProfit5Years">67.75</span>M ريال</p>
+                        </div>
+                        <div class="rec-point" style="background: rgba(255,255,255,0.15); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: white;">📈 العائد النسبي</h4>
+                            <p style="font-size: 24px; font-weight: 800; color: #10B981; margin: 10px 0;"><span id="roiPercentage">45.5</span>%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>مستعد للانضمام إلى هذه الثورة التعليمية؟</h2>
+                <p>شاركنا في الاستفادة من الطلب المتزايد على التعليم النوعي المتميز في الرياض. دعنا نناقش كيف تتناسب هذه الفرصة الاستثمارية مع محفظتك.</p>
+                <div class="cta-buttons">
+                    <a href="mailto:mabdulfattah@calx.sa" class="btn-primary btn-large">📧 حجز اجتماع مستثمرين</a>
+                    <a href="https://wa.me/966599343529" class="btn-secondary btn-large">💬 التواصل 0599343529</a>
+                </div>
+                <div class="cta-trust">
+                    <p>🔒 جميع اجتماعات المستثمرين سرية وتدار بمهنية عالية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>المجمع التعليمي المتميز</h3>
+                    <p>تعليم نوعي متكامل يجمع بين المعايير الدولية والتميز الأكاديمي والتنافسية العالمية.</p>
+                    <p class="footer-tagline">بناء مستقبل التعليم في المملكة العربية السعودية</p>
+                </div>
+                <div class="footer-section">
+                    <h4>استفسارات الاستثمار</h4>
+                    <p>📍 الرياض – المملكة العربية السعودية</p>
+                    <p>📧 mabdulfattah@calx.sa</p>
+                    <p>💬 <a href="https://wa.me/966599343529" style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">التواصل: 0599343529</a></p>
+                    <p>🌐 www.educationalcomplex.sa</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <a href="#journey">رحلة الاستثمار</a>
+                    <a href="#opportunity">فرصة السوق</a>
+                    <a href="#financials">البيانات المالية</a>
+                </div>
+                <div class="footer-section">
+                    <h4>أبرز مميزات الاستثمار</h4>
+                    <p>✓ عائد <span class="dynamic-value"><span id="footerROI">45.5</span>%</span> (5 سنوات)</p>
+                    <p>✓ هوامش ربح إجمالية <span class="dynamic-value"><span id="footerMargin">60</span>%+</span></p>
+                    <p>✓ استثمار أولي: <span class="dynamic-value"><span id="footerInvestment">148.8</span>M</span></p>
+                    <p>✓ صافي ربح (5 سنوات): <span class="dynamic-value"><span id="footerProfit">67.75</span>M</span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 المجمع التعليمي المتميز. جميع الحقوق محفوظة. | فرصة استثمارية مميزة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        // Dynamic Calculation Engine
+        function formatNumber(num) {
+            return new Intl.NumberFormat('en-US').format(Math.round(num));
+        }
+        
+        function formatMillion(num) {
+            return (num / 1000000).toFixed(2);
+        }
+        
+        function togglePanel() {
+            document.getElementById('inputPanel').classList.toggle('active');
+        }
+        
+        function toggleLanguage() {
+            const body = document.body;
+            const isRTL = body.classList.contains('rtl');
+            
+            if (isRTL) {
+                // Switch to English
+                body.classList.remove('rtl');
+                body.setAttribute('dir', 'ltr');
+                document.getElementById('langToggle').textContent = 'العربية';
+            } else {
+                // Switch to Arabic
+                body.classList.add('rtl');
+                body.setAttribute('dir', 'rtl');
+                document.getElementById('langToggle').textContent = 'English';
+            }
+        }
+        
+        function calculate() {
+            // Get all input values
+            const landArea = parseFloat(document.getElementById('landArea').value) || 0;
+            const landPrice = parseFloat(document.getElementById('landPrice').value) || 0;
+            const buildingArea = parseFloat(document.getElementById('buildingArea').value) || 0;
+            const costPerMeter = parseFloat(document.getElementById('costPerMeter').value) || 0;
+            const equipment = parseFloat(document.getElementById('equipment').value) || 0;
+            const furniture = parseFloat(document.getElementById('furniture').value) || 0;
+            const technology = parseFloat(document.getElementById('technology').value) || 0;
+            const infrastructure = parseFloat(document.getElementById('infrastructure').value) || 0;
+            const maxCapacity = parseFloat(document.getElementById('maxCapacity').value) || 0;
+            const tuition = parseFloat(document.getElementById('tuition').value) || 0;
+            
+            const students = [];
+            const expenses = [];
+            for(let i=1; i<=5; i++) {
+                students.push(parseFloat(document.getElementById('students'+i).value) || 0);
+                expenses.push(parseFloat(document.getElementById('expenses'+i).value) || 0);
+            }
+            
+            // Calculate costs
+            const landCost = landArea * landPrice;
+            const constructionCost = buildingArea * costPerMeter;
+            const totalInvestment = landCost + constructionCost + equipment + furniture + technology + infrastructure;
+            
+            // Calculate revenues and profits
+            const revenues = students.map(s => s * tuition);
+            const profits = revenues.map((r, i) => r - expenses[i]);
+            
+            const totalRevenue = revenues.reduce((a, b) => a + b, 0);
+            const totalExpenses = expenses.reduce((a, b) => a + b, 0);
+            const totalProfit = profits.reduce((a, b) => a + b, 0);
+            
+            const roi = (totalProfit / totalInvestment) * 100;
+            
+            // Calculate margin (example: using year 4 data)
+            const year4Margin = revenues[3] > 0 ? ((revenues[3] - expenses[3]) / revenues[3]) * 100 : 0;
+            
+            // Update input panel displays
+            document.getElementById('displayLandArea').textContent = formatNumber(landArea);
+            document.getElementById('displayLandPrice').textContent = formatNumber(landPrice);
+            document.getElementById('landCostCalc').textContent = formatNumber(landCost);
+            document.getElementById('constructionCostCalc').textContent = formatNumber(constructionCost);
+            document.getElementById('totalInvestmentCalc').textContent = formatNumber(totalInvestment);
+            
+            // Update revenue displays in panel
+            for(let i=1; i<=5; i++) {
+                document.getElementById('rev'+i).textContent = formatMillion(revenues[i-1]);
+            }
+            
+            // Update Hero Section
+            document.getElementById('heroROI').textContent = roi.toFixed(1);
+            document.getElementById('heroEBITDA').textContent = formatMillion(totalProfit);
+            document.getElementById('heroMargin').textContent = Math.round(year4Margin);
+            document.getElementById('heroBreakeven').textContent = '3-4';
+            
+            // Update Timeline
+            document.getElementById('timeline1Investment').textContent = formatMillion(totalInvestment);
+            document.getElementById('timeline1Land').textContent = formatMillion(landCost);
+            document.getElementById('timeline2Building').textContent = formatNumber(buildingArea);
+            document.getElementById('timeline3Students1').textContent = formatNumber(students[0]);
+            document.getElementById('timeline3Rev1').textContent = formatMillion(revenues[0]);
+            document.getElementById('timeline3Students2').textContent = formatNumber(students[1]);
+            document.getElementById('timeline3Rev2').textContent = formatMillion(revenues[1]);
+            document.getElementById('timeline4Students').textContent = formatNumber(students[2]) + '-' + formatNumber(students[3]);
+            document.getElementById('timeline4Fee').textContent = formatNumber(tuition);
+            document.getElementById('timeline5Profit').textContent = formatMillion(totalProfit);
+            document.getElementById('timeline5ROI').textContent = roi.toFixed(1);
+            document.getElementById('timeline5Students').textContent = formatNumber(maxCapacity);
+            
+            // Update Features Section
+            document.getElementById('featuresFee').textContent = formatNumber(tuition);
+            document.getElementById('featuresMargin').textContent = Math.round(year4Margin);
+            document.getElementById('featuresCapacity').textContent = formatNumber(maxCapacity);
+            
+            // Update Financials Section
+            document.getElementById('finInvestment').textContent = formatMillion(totalInvestment);
+            document.getElementById('finROI').textContent = roi.toFixed(1);
+            document.getElementById('finMargin').textContent = Math.round(year4Margin);
+            document.getElementById('finBreakeven').textContent = '3-4';
+            
+            // Update Projection Cards
+            for(let i=1; i<=5; i++) {
+                document.getElementById('projStudents'+i).textContent = formatNumber(students[i-1]);
+                document.getElementById('projRev'+i).textContent = formatMillion(revenues[i-1]);
+                document.getElementById('projExp'+i).textContent = formatMillion(expenses[i-1]);
+                document.getElementById('projProfit'+i).textContent = formatMillion(profits[i-1]);
+            }
+            
+            // Update Summary
+            document.getElementById('totalRevenue').textContent = formatMillion(totalRevenue);
+            document.getElementById('totalExpenses').textContent = formatMillion(totalExpenses);
+            document.getElementById('netProfit5Years').textContent = formatMillion(totalProfit);
+            document.getElementById('roiPercentage').textContent = roi.toFixed(1);
+            
+            // Update Footer
+            document.getElementById('footerROI').textContent = roi.toFixed(1);
+            document.getElementById('footerMargin').textContent = Math.round(year4Margin);
+            document.getElementById('footerInvestment').textContent = formatMillion(totalInvestment);
+            document.getElementById('footerProfit').textContent = formatMillion(totalProfit);
+        }
+        
+        // Initialize calculations on page load
+        window.addEventListener('load', calculate);
+    </script>
+</body>
+</html>
