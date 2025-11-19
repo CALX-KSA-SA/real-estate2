@@ -46,6 +46,8 @@
             font-weight: 600;
             box-shadow: 0 4px 12px rgba(0,102,255,0.3);
             transition: all 0.3s ease;
+            font-size: 15px;
+            white-space: nowrap;
         }
         
         .panel-toggle:hover {
@@ -62,8 +64,12 @@
         .input-section h3 {
             font-size: 16px;
             margin-bottom: 15px;
-            color: var(--primary-color);
+            color: white;
             font-weight: 700;
+            background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+            padding: 12px 20px;
+            margin: 0 -20px 15px -20px;
+            border-radius: 0;
         }
         
         .input-group {
@@ -184,12 +190,14 @@
             }
             
             .panel-toggle {
-                font-size: 14px;
-                padding: 10px 16px;
-                top: 10px;
-                right: 10px;
+                font-size: 13px;
+                padding: 10px 15px;
+                top: 90px;
+                right: 15px;
                 position: fixed;
                 z-index: 1001;
+                white-space: nowrap;
+                box-shadow: 0 4px 16px rgba(0,102,255,0.4);
             }
             
             .input-section {
@@ -200,10 +208,14 @@
                 font-size: 15px !important;
                 position: sticky;
                 top: 0;
-                background: white;
-                padding: 10px 0;
+                background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+                color: white !important;
+                padding: 12px 15px;
                 z-index: 10;
-                border-bottom: 2px solid var(--primary-color);
+                border-bottom: none;
+                margin: 0 -15px 15px -15px;
+                border-radius: 0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             }
             
             .input-group {
@@ -260,12 +272,18 @@
             }
             
             .navbar {
-                padding: 10px 0 !important;
+                padding: 12px 0 !important;
+                position: relative;
+                z-index: 999;
             }
             
             .nav-links {
                 flex-direction: column !important;
                 gap: 10px !important;
+            }
+            
+            .hero-section {
+                padding-top: 100px !important;
             }
             
             /* Close panel overlay for mobile */
@@ -309,8 +327,10 @@
             }
             
             .panel-toggle {
-                font-size: 13px !important;
-                padding: 8px 14px !important;
+                font-size: 12px !important;
+                padding: 8px 12px !important;
+                top: 85px !important;
+                right: 10px !important;
             }
             
             .hero-stats {
