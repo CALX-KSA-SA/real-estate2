@@ -43,28 +43,26 @@
         
         .panel-toggle {
             position: fixed;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%) rotate(-90deg);
-            transform-origin: right center;
+            bottom: 20px;
+            left: 20px;
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px 8px 0 0;
+            padding: 14px 28px;
+            border-radius: 50px;
             cursor: pointer;
             z-index: 1000;
             font-weight: 600;
-            box-shadow: -4px 0 12px rgba(0,102,255,0.3);
+            box-shadow: 0 4px 20px rgba(0,102,255,0.4);
             transition: all 0.3s ease;
-            font-size: 14px;
+            font-size: 15px;
             white-space: nowrap;
         }
         
         .panel-toggle:hover {
             background: var(--primary-dark);
-            transform: translateY(-50%) rotate(-90deg) translateX(-4px);
-            box-shadow: -6px 0 16px rgba(0,102,255,0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(0,102,255,0.5);
         }
         
         .input-section {
@@ -203,16 +201,14 @@
             
             .panel-toggle {
                 font-size: 13px;
-                padding: 10px 20px;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%) rotate(-90deg);
-                transform-origin: right center;
+                padding: 12px 24px;
+                bottom: 15px;
+                left: 15px;
                 position: fixed;
                 z-index: 1001;
                 white-space: nowrap;
-                box-shadow: -4px 0 16px rgba(0,102,255,0.4);
-                border-radius: 8px 8px 0 0;
+                box-shadow: 0 4px 16px rgba(0,102,255,0.4);
+                border-radius: 50px;
             }
             
             .input-section {
@@ -343,12 +339,10 @@
             
             .panel-toggle {
                 font-size: 12px !important;
-                padding: 8px 18px !important;
-                top: 50% !important;
-                right: 0 !important;
-                transform: translateY(-50%) rotate(-90deg) !important;
-                transform-origin: right center !important;
-                border-radius: 8px 8px 0 0 !important;
+                padding: 10px 20px !important;
+                bottom: 10px !important;
+                left: 10px !important;
+                border-radius: 50px !important;
             }
             
             .hero-stats {
