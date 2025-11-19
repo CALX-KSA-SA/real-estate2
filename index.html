@@ -374,14 +374,12 @@
             
             <div class="input-group">
                 <label>مساحة الأرض (م²)</label>
-                <input type="number" id="landArea" value="14000" oninput="calculate()">
-                <div class="calc-output">المساحة: <span id="displayLandArea">14,000</span> م²</div>
+                <input type="number" id="landArea" value="14000" oninput="calculate()" placeholder="مثال: 14000">
             </div>
             
             <div class="input-group">
-                <label>سعر متر الأرض (ريال)</label>
-                <input type="number" id="landPrice" value="4000" oninput="calculate()">
-                <div class="calc-output">السعر: <span id="displayLandPrice">4,000</span> ريال/م²</div>
+                <label>سعر متر الأرض (ريال/م²)</label>
+                <input type="number" id="landPrice" value="4000" oninput="calculate()" placeholder="مثال: 4000">
             </div>
             
             <div class="input-group">
@@ -393,12 +391,12 @@
             
             <div class="input-group">
                 <label>مسطحات البناء (م²)</label>
-                <input type="number" id="buildingArea" value="30000" oninput="calculate()">
+                <input type="number" id="buildingArea" value="30000" oninput="calculate()" placeholder="مثال: 30000">
             </div>
             
             <div class="input-group">
-                <label>تكلفة متر البناء (ريال)</label>
-                <input type="number" id="costPerMeter" value="2500" oninput="calculate()">
+                <label>تكلفة متر البناء (ريال/م²)</label>
+                <input type="number" id="costPerMeter" value="2500" oninput="calculate()" placeholder="مثال: 2500">
             </div>
             
             <div class="input-group">
@@ -413,23 +411,23 @@
             <h3>💼 تكاليف الإنشاء الإضافية</h3>
             
             <div class="input-group">
-                <label>تجهيزات المختبرات والمعامل</label>
-                <input type="number" id="equipment" value="6000000" oninput="calculate()">
+                <label>تجهيزات المختبرات والمعامل (ريال)</label>
+                <input type="number" id="equipment" value="6000000" oninput="calculate()" placeholder="مثال: 6000000">
             </div>
             
             <div class="input-group">
-                <label>الأثاث والتجهيزات</label>
-                <input type="number" id="furniture" value="4800000" oninput="calculate()">
+                <label>الأثاث والتجهيزات (ريال)</label>
+                <input type="number" id="furniture" value="4800000" oninput="calculate()" placeholder="مثال: 4800000">
             </div>
             
             <div class="input-group">
-                <label>الأنظمة التقنية (LMS, SMS)</label>
-                <input type="number" id="technology" value="2000000" oninput="calculate()">
+                <label>الأنظمة التقنية (LMS, SMS) (ريال)</label>
+                <input type="number" id="technology" value="2000000" oninput="calculate()" placeholder="مثال: 2000000">
             </div>
             
             <div class="input-group">
-                <label>البنية التحتية (ملاعب، حدائق)</label>
-                <input type="number" id="infrastructure" value="5000000" oninput="calculate()">
+                <label>البنية التحتية (ملاعب، حدائق) (ريال)</label>
+                <input type="number" id="infrastructure" value="5000000" oninput="calculate()" placeholder="مثال: 5000000">
             </div>
             
             <div class="input-group">
@@ -444,13 +442,13 @@
             <h3>👥 بيانات الطلاب والرسوم</h3>
             
             <div class="input-group">
-                <label>الطاقة الاستيعابية المدروسة</label>
-                <input type="number" id="maxCapacity" value="2800" oninput="calculate()">
+                <label>الطاقة الاستيعابية المدروسة (طالب)</label>
+                <input type="number" id="maxCapacity" value="2800" oninput="calculate()" placeholder="مثال: 2800">
             </div>
             
             <div class="input-group">
-                <label>الرسوم الدراسية السنوية (ريال)</label>
-                <input type="number" id="tuition" value="22500" oninput="calculate()">
+                <label>الرسوم الدراسية السنوية (ريال/طالب)</label>
+                <input type="number" id="tuition" value="22500" oninput="calculate()" placeholder="مثال: 22500">
             </div>
         </div>
 
@@ -458,32 +456,32 @@
             <h3>📊 أعداد الطلاب المتوقعة (5 سنوات)</h3>
             
             <div class="input-group">
-                <label>السنة الأولى</label>
-                <input type="number" id="students1" value="1800" oninput="calculate()">
+                <label>السنة الأولى (عدد الطلاب)</label>
+                <input type="number" id="students1" value="1800" oninput="calculate()" placeholder="مثال: 1800">
                 <div class="calc-output">الإيرادات: <span id="rev1">40.50</span> مليون ريال</div>
             </div>
             
             <div class="input-group">
-                <label>السنة الثانية</label>
-                <input type="number" id="students2" value="2300" oninput="calculate()">
+                <label>السنة الثانية (عدد الطلاب)</label>
+                <input type="number" id="students2" value="2300" oninput="calculate()" placeholder="مثال: 2300">
                 <div class="calc-output">الإيرادات: <span id="rev2">51.75</span> مليون ريال</div>
             </div>
             
             <div class="input-group">
-                <label>السنة الثالثة</label>
-                <input type="number" id="students3" value="2600" oninput="calculate()">
+                <label>السنة الثالثة (عدد الطلاب)</label>
+                <input type="number" id="students3" value="2600" oninput="calculate()" placeholder="مثال: 2600">
                 <div class="calc-output">الإيرادات: <span id="rev3">58.50</span> مليون ريال</div>
             </div>
             
             <div class="input-group">
-                <label>السنة الرابعة</label>
-                <input type="number" id="students4" value="2800" oninput="calculate()">
+                <label>السنة الرابعة (عدد الطلاب)</label>
+                <input type="number" id="students4" value="2800" oninput="calculate()" placeholder="مثال: 2800">
                 <div class="calc-output">الإيرادات: <span id="rev4">63.00</span> مليون ريال</div>
             </div>
             
             <div class="input-group">
-                <label>السنة الخامسة</label>
-                <input type="number" id="students5" value="2800" oninput="calculate()">
+                <label>السنة الخامسة (عدد الطلاب)</label>
+                <input type="number" id="students5" value="2800" oninput="calculate()" placeholder="مثال: 2800">
                 <div class="calc-output">الإيرادات: <span id="rev5">63.00</span> مليون ريال</div>
             </div>
         </div>
@@ -492,28 +490,28 @@
             <h3>💸 المصروفات التشغيلية السنوية</h3>
             
             <div class="input-group">
-                <label>مصروفات السنة الأولى</label>
-                <input type="number" id="expenses1" value="35000000" oninput="calculate()">
+                <label>مصروفات السنة الأولى (ريال)</label>
+                <input type="number" id="expenses1" value="35000000" oninput="calculate()" placeholder="مثال: 35000000">
             </div>
             
             <div class="input-group">
-                <label>مصروفات السنة الثانية</label>
-                <input type="number" id="expenses2" value="40000000" oninput="calculate()">
+                <label>مصروفات السنة الثانية (ريال)</label>
+                <input type="number" id="expenses2" value="40000000" oninput="calculate()" placeholder="مثال: 40000000">
             </div>
             
             <div class="input-group">
-                <label>مصروفات السنة الثالثة</label>
-                <input type="number" id="expenses3" value="42000000" oninput="calculate()">
+                <label>مصروفات السنة الثالثة (ريال)</label>
+                <input type="number" id="expenses3" value="42000000" oninput="calculate()" placeholder="مثال: 42000000">
             </div>
             
             <div class="input-group">
-                <label>مصروفات السنة الرابعة</label>
-                <input type="number" id="expenses4" value="45000000" oninput="calculate()">
+                <label>مصروفات السنة الرابعة (ريال)</label>
+                <input type="number" id="expenses4" value="45000000" oninput="calculate()" placeholder="مثال: 45000000">
             </div>
             
             <div class="input-group">
-                <label>مصروفات السنة الخامسة</label>
-                <input type="number" id="expenses5" value="47000000" oninput="calculate()">
+                <label>مصروفات السنة الخامسة (ريال)</label>
+                <input type="number" id="expenses5" value="47000000" oninput="calculate()" placeholder="مثال: 47000000">
             </div>
         </div>
     </div>
