@@ -16,10 +16,10 @@
         /* Dynamic Input Panel */
         .input-panel {
             position: fixed;
-            top: 80px;
-            right: -400px;
-            width: 380px;
-            height: calc(100vh - 100px);
+            top: 120px;
+            right: -320px;
+            width: 300px;
+            height: calc(100vh - 140px);
             background: white;
             box-shadow: -2px 0 20px rgba(0,0,0,0.1);
             transition: right 0.3s ease;
@@ -30,6 +30,15 @@
         
         .input-panel.active {
             right: 0;
+        }
+        
+        .input-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .input-panel::-webkit-scrollbar-thumb {
+            background: #0066ff;
+            border-radius: 3px;
         }
         
         .panel-toggle {
@@ -57,39 +66,40 @@
         }
         
         .input-section {
-            padding: 20px;
+            padding: 15px;
             border-bottom: 1px solid var(--border-color);
         }
         
         .input-section h3 {
-            font-size: 16px;
-            margin-bottom: 15px;
+            font-size: 14px;
+            margin-bottom: 12px;
             color: white;
             font-weight: 700;
             background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
-            padding: 12px 20px;
-            margin: 0 -20px 15px -20px;
+            padding: 10px 15px;
+            margin: 0 -15px 12px -15px;
             border-radius: 0;
+            box-shadow: 0 2px 6px rgba(0,102,255,0.2);
         }
         
-        .input-group {
-            margin-bottom: 15px;
+                .input-group {
+            margin-bottom: 10px;
         }
         
         .input-group label {
             display: block;
-            font-size: 13px;
-            margin-bottom: 5px;
+            font-size: 12px;
+            margin-bottom: 4px;
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 600;
         }
         
         .input-group input {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 13px;
             transition: all 0.2s;
         }
         
@@ -101,12 +111,12 @@
         
         .calc-output {
             background: var(--bg-light);
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 11px;
             color: var(--text-primary);
+            margin-top: 4px;
             font-weight: 600;
-            margin-top: 5px;
         }
         
         .dynamic-value {
